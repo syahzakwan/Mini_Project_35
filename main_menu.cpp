@@ -34,7 +34,8 @@ void mainMenu(LoginRegisterForgot &loginregisterforgot) {
             loginregisterforgot.forgotPassword();
             break;
         case 4:
-
+            loginregisterforgot.booking();
+            break;
         case 5:
 
         case 6:

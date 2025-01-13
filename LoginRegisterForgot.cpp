@@ -96,3 +96,71 @@ void LoginRegisterForgot::forgotPassword()
         cout << "\n\n" << endl;
     }
 }
+
+void LoginRegisterForgot::booking()
+{
+    int rows = 30;
+    int cols = 6;
+    FlightReservationSystem system(rows, cols);
+
+    int choice;
+    do {
+        cout << "\n--- Flight Ticket Reservation System ---\n";
+        cout << "1. Display Available Seats\n";
+        cout << "2. Book Seats\n";
+        cout << "3. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Invalid input. Please enter a number.\n";
+            continue;
+        }
+
+        switch (choice) {
+        case 1:
+            system.displaySeats();
+            break;
+        case 2: {
+            int numSeats;
+            cout << "Enter the number of seats to book: ";
+            cin >> numSeats;
+
+            if (cin.fail() || numSeats <= 0) {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Invalid input. Please enter a positive integer.\n";
+                break;
+            }
+
+            vector<pair<int, int>> seatSelections;
+            for (int i = 0; i < numSeats; ++i) {
+                int row, col;
+                cout << "Enter row and column for seat " << i + 1 << " (e.g., 1 2): ";
+                cin >> row >> col;
+
+                if (cin.fail()) {
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    cout << "Invalid input. Please enter valid row and column numbers.\n";
+                    --i; // Retry the current seat input
+                    continue;
+                }
+
+                seatSelections.emplace_back(row, col);
+            }
+
+            system.bookSeats(seatSelections);
+            break;
+        }
+        case 3:
+            cout << "Exiting the system. Thank you!\n";
+            break;
+        default:
+            cout << "Invalid choice. Please try again.\n";
+        }
+    } while (choice != 3);
+
+}
