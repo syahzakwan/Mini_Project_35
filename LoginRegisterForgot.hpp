@@ -18,7 +18,7 @@ public:
     void forgotPassword();
     void booking();
 private:
-    const string databaseFile = "user_data.txt"; // File to store user data
+    const string databaseFile = "user_data.txt";
     bool checkUserExists(const string& username, string& password);
 };
 
@@ -31,6 +31,11 @@ private:
 public:
     FlightReservationSystem(int rows, int cols) : rows(rows), cols(cols) {
         seats.resize(rows, vector<bool>(cols, false));
+        loadSeatData();
+    }
+
+    ~FlightReservationSystem() {
+        saveSeatData();
     }
 
     void displaySeats() {
@@ -72,6 +77,50 @@ public:
             cout << "Some seats could not be booked. Please try again.\n";
         }
     }
+
+    void saveSeatData() {
+       ofstream seatFileWrite("booking.txt");
+       if (!seatFileWrite) {
+        cerr << "Error saving booking data to file.\n";
+        return;
+       }
+       seatFileWrite << rows << " " << cols << endl;
+       for (const auto& row : seats) {
+        for (bool seat : row) {
+            seatFileWrite << seat << " ";
+        }
+        seatFileWrite << endl;
+       }
+
+       seatFileWrite.close();
+    }
+
+    void loadSeatData() {
+        ifstream seatFileRead("booking.txt");
+        if (!seatFileRead) {
+            cerr << "Error loading data." << endl;
+            return;
+        }
+        
+        int fileRows, fileCols;
+        seatFileRead >> fileRows >> fileCols;
+
+        if (fileRows != rows || fileCols != cols) {
+            cerr << "Error: Seat data does not match." << endl;
+            return;
+        }
+
+        for (int r = 0; r < rows; r++) {
+            for (int c = 0; c < cols; c++) {
+                int seatStatus;
+                seatFileRead >> seatStatus;
+                seats[r][c] = static_cast<bool>(seatStatus);
+            }
+        }
+
+        seatFileRead.close();
+    }
+
 };
 
 #endif // LOGINREGISTERFORGOT_HPP
