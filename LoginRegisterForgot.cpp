@@ -99,9 +99,11 @@ void LoginRegisterForgot::forgotPassword()
 
 void LoginRegisterForgot::booking()
 {
-    int rows = 30;
-    int cols = 6;
-    FlightReservationSystem system(rows, cols);
+    int fcrows = 8;
+    int bcrows = 10;
+    int ecrows = 20;
+    int cols = 10;
+    FlightReservationSystem system(fcrows, bcrows, ecrows, cols);
 
     int choice;
     do {
@@ -121,40 +123,44 @@ void LoginRegisterForgot::booking()
 
         switch (choice) {
         case 1:
-            system.displaySeats();
+            system.displaySeatsbyClass();
             break;
         case 2: {
-            int numSeats;
-            cout << "Enter the number of seats to book: ";
-            cin >> numSeats;
-
-            if (cin.fail() || numSeats <= 0) {
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                cout << "Invalid input. Please enter a positive integer.\n";
-                break;
-            }
-
-            vector<pair<int, int>> seatSelections;
-            for (int i = 0; i < numSeats; ++i) {
-                int row, col;
-                cout << "Enter row and column for seat " << i + 1 << " (e.g., 1 2): ";
-                cin >> row >> col;
-
-                if (cin.fail()) {
-                    cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                    cout << "Invalid input. Please enter valid row and column numbers.\n";
-                    --i; // Retry the current seat input
-                    continue;
-                }
-
-                seatSelections.emplace_back(row, col);
-            }
-
-            system.bookSeats(seatSelections);
+            system.bookSeatsbyClass();
             break;
         }
+
+        //     int numSeats;
+        //     cout << "Enter the number of seats to book: ";
+        //     cin >> numSeats;
+
+        //     if (cin.fail() || numSeats <= 0) {
+        //         cin.clear();
+        //         cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        //         cout << "Invalid input. Please enter a positive integer.\n";
+        //         break;
+        //     }
+
+        //     vector<pair<int, int>> seatSelections;
+        //     for (int i = 0; i < numSeats; ++i) {
+        //         int row, col;
+        //         cout << "Enter row and column for seat " << i + 1 << " (e.g., 1 2): ";
+        //         cin >> row >> col;
+
+        //         if (cin.fail()) {
+        //             cin.clear();
+        //             cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        //             cout << "Invalid input. Please enter valid row and column numbers.\n";
+        //             --i; // Retry the current seat input
+        //             continue;
+        //         }
+
+        //         seatSelections.emplace_back(row, col);
+        //     }
+
+        //     system.bookSeats(seatSelections);
+        //     break;
+        // }
         case 3:
             cout << "Exiting the system. Thank you!\n";
             break;
