@@ -1,11 +1,12 @@
 #include "LoginRegisterForgot.hpp"
 
-bool LoginRegisterForgot::checkUserExists(const string& username, string& password) 
+bool LoginRegisterForgot::checkCustomerExists(const string& username, string& password) 
 {
-    ifstream infile(databaseFile);
+    ifstream infile(customerFile);
     string fileUsername, filePassword;
 
-    while (getline(infile, fileUsername) && getline(infile, filePassword)) {
+    while (getline(infile, fileUsername) && getline(infile, filePassword))
+    {
         if (fileUsername == username) {
             password = filePassword;
             return true;
@@ -14,16 +15,18 @@ bool LoginRegisterForgot::checkUserExists(const string& username, string& passwo
     return false;
 }
 
-void LoginRegisterForgot::registerUser() 
+void LoginRegisterForgot::registerCustomer() 
 {
     string username, password;
+
     cout <<"\n" << endl;
     cout << "\t\t\t\t\t\t\t     Enter username: ";
     cin.ignore(); 
     getline(cin, username);
 
-    string dummyPassword;
-    if (checkUserExists(username, dummyPassword)) {
+    string errorPassword;
+    if (checkCustomerExists(username, errorPassword)) 
+    {
         cout << "\t\t\t\t\t ___________________________________________________________________" << endl;
         cout << "\t\t\t\t\t!                                                                  !" << endl;
         cout << "\t\t\t\t\t!                    This username already exists                  !" << endl;
@@ -36,32 +39,37 @@ void LoginRegisterForgot::registerUser()
     cout << "\t\t\t\t\t\t\t     Enter password: ";
     getline(cin, password);
 
-    ofstream outfile(databaseFile, ios::app);
-    if (outfile.is_open()) {
+    ofstream outfile(customerFile, ios::app);
+    if (outfile.is_open()) 
+    {
         outfile << username << '\n' << password << '\n';
-         cout << "\t\t\t\t\t ___________________________________________________________________" << endl;
+        cout << "\t\t\t\t\t ___________________________________________________________________" << endl;
         cout << "\t\t\t\t\t|                                                                  |" << endl;
         cout << "\t\t\t\t\t|                      Register succesfull!!!!                     |" << endl;
         cout << "\t\t\t\t\t|                             Welcome !!!                          |" << endl;
         cout << "\t\t\t\t\t\t\t\t   "                  << username<< "\t\t\t\t\t"                   <<endl;
         cout << "\t\t\t\t\t|__________________________________________________________________|" << endl;
         cout <<"\n\n" << endl;
-    } else {
+    } 
+    else 
+    {
         cout << "\t\t\t\t\t\t\t     Error: Unable to open file for writing.\n";
     }
     outfile.close();
 }
 
-void LoginRegisterForgot::loginUser() 
+void LoginRegisterForgot::loginCustomer() 
 {
     string username, password, storedPassword;
+
     cout << "\t\t\t\t\t\t\t     Enter username: ";
     cin.ignore();
     getline(cin, username);
     cout << "\t\t\t\t\t\t\t     Enter password: ";
     getline(cin, password);
 
-    if (checkUserExists(username, storedPassword) && storedPassword == password) {
+    if (checkCustomerExists(username, storedPassword) && storedPassword == password) 
+    {
         cout << "\t\t\t\t\t ___________________________________________________________________" << endl;
         cout << "\t\t\t\t\t|                                                                  |" << endl;
         cout << "\t\t\t\t\t|                      Login succesfull!!!!                        |" << endl;
@@ -69,7 +77,9 @@ void LoginRegisterForgot::loginUser()
         cout << "\t\t\t\t\t\t\t\t  "                  << username<< "\t\t\t\t\t"                   <<endl;
         cout << "\t\t\t\t\t|__________________________________________________________________|" << endl;
         cout <<"\n\n" << endl;
-    } else {
+    } else 
+
+    {
         cout << "\t\t\t\t\t ___________________________________________________________________" << endl;
         cout << "\t\t\t\t\t!                                                                  !" << endl;
         cout << "\t\t\t\t\t!                    Invalid Username or Password                  !" << endl;
@@ -82,13 +92,17 @@ void LoginRegisterForgot::loginUser()
 void LoginRegisterForgot::forgotPassword() 
 {
     string username, storedPassword;
+
     cout << "\t\t\t\t\t\t\t     Enter your username: ";
     cin.ignore();
     getline(cin, username);
 
-    if (checkUserExists(username, storedPassword)) {
+    if (checkCustomerExists(username, storedPassword)) 
+    {
         cout << "\t\t\t\t\t\t\t     Your password is: " << storedPassword << "\n\n\n";
-    } else {
+    } 
+    else 
+    {
         cout << "\t\t\t\t\t ___________________________________________________________________" << endl;
         cout << "\t\t\t\t\t!                                                                  !" << endl;
         cout << "\t\t\t\t\t!                       Username not found!!                       !" << endl;

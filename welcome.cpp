@@ -2,8 +2,9 @@
 
 using namespace std;
 
-void welcomePage() {
-     cout << "" << endl;
+void welcomePage() 
+{
+    cout << "" << endl;
     cout << "\t\t\t\t\t ___________________________________________________________________"  << endl;
     cout << "\t\t\t\t\t|                                                                  |" << endl;
     cout << "\t\t\t\t\t|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|" << endl;

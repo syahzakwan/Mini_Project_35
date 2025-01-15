@@ -3,9 +3,12 @@
 
 using namespace std;
 
-void mainMenu(LoginRegisterForgot &loginregisterforgot) {
+void mainMenu(LoginRegisterForgot &loginregisterforgot) 
+{
     int choice;
-    do {
+
+    do 
+    {
     cout << "\t\t\t\t\t ___________________________________________________________________"  << endl;
     cout << "\t\t\t\t\t|                                                                  |" << endl;
     cout << "\t\t\t\t\t|                            Main Menu                             |" << endl;
@@ -23,12 +26,13 @@ void mainMenu(LoginRegisterForgot &loginregisterforgot) {
     cout << "\t\t\t\t\t                     Enter your choice > ";
         cin >> choice;
 
-        switch (choice) {
+        switch (choice) 
+        {
         case 1:
-            loginregisterforgot.loginUser();
+            loginregisterforgot.loginCustomer();
             break;
         case 2:
-            loginregisterforgot.registerUser();
+            loginregisterforgot.registerCustomer();
             break;
         case 3:
             loginregisterforgot.forgotPassword();

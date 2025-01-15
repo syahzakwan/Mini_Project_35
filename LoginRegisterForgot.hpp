@@ -11,15 +11,21 @@
 
 using namespace std;
 
-class LoginRegisterForgot {
+class LoginRegisterForgot 
+{
+
 public:
-    void registerUser();
-    void loginUser();
+
+    void registerCustomer();
+    void loginCustomer();
     void forgotPassword();
     void booking();
+
 private:
-    const string databaseFile = "user_data.txt";
-    bool checkUserExists(const string& username, string& password);
+
+    const string customerFile = "customer_data.txt";
+    bool checkCustomerExists(const string& username, string& password);
+
 };
 
 class FlightReservationSystem {
@@ -227,4 +233,4 @@ public:
 
 };
 
-#endif // LOGINREGISTERFORGOT_HPP
+#endif

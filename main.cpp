@@ -22,7 +22,8 @@
 
 using namespace std;
 
-int main() {
+int main() 
+{
     welcomePage();
     LoginRegisterForgot loginregisterforgot;
     mainMenu(loginregisterforgot);
