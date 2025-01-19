@@ -43,7 +43,7 @@ public:
         }
     }
 
-   
+  
     void reserveMultipleSeats(int numberOfSeats) {
         int row, col;
         int reservedSeats = 0;
@@ -57,4 +57,3 @@ public:
 
             if (reserveSeat(row, col)) {
                 reservedSeats++;
-      

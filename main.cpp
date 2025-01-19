@@ -7,8 +7,8 @@
   |         TANG JIN SHEN             |      23301943     |
   |     GARETT KHOO BOO ZHENG         |      23301528     |
   | AHMAD SYAHIRAN ZAKWAN BIN KARMAH  |      23303512     |
-  |                                   |                   | 
-  |                                   |                   |
+  | NURUL FATIHA ARMANI BINTI MUHAMMAD|      23302501     | 
+  |              NIZAM                |                   |
   |                                   |                   |
   |___________________________________|___________________|
 
