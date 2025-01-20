@@ -43,7 +43,8 @@ void mainMenu(LoginRegisterForgot &loginregisterforgot)
         case 5:
 
         case 6:
-
+            cancel.cancelBooking();
+            break;
         
         case 7:
             cout << "\n" << endl;
