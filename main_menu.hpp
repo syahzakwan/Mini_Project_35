@@ -4,6 +4,6 @@
 #include "LoginRegisterForgot.hpp"
 #include "cancel.hpp"
 
-void mainMenu(LoginRegisterForgot &loginregisterforgot);
+void mainMenu(LoginRegisterForgot &loginregisterforgot, Cancel &cancel);
 
 #endif

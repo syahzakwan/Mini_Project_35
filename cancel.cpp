@@ -1,69 +1,74 @@
 #include "cancel.hpp"
+#include <iostream>
+#include <map>
 
-// Initialize the static vector of bookings
-vector<CancelReservation::Booking> CancelReservation::bookings;
+using namespace std;
 
-// Function to show the cancel menu
-void CancelReservation::showCancelMenu() {
+map<int, string> seatStatus = {
+    {101, "Available"},
+    {102, "Booked"},
+    {103, "Available"},
+    {104, "Booked"},
+    {105, "Available"}
+};
+
+void Cancel::cancelReservation() {
     int choice;
+    cout << " __________________________________________________________________ " << endl;
+    cout << "|____________________ Cancel Reservation Menu _____________________|" << endl;
+    cout << "|                                                                  |" << endl;
+    cout << "|                  1) Confirm Cancel Reservation                   |" << endl;
+    cout << "|                  2) Check Seat Status                            |" << endl;
+    cout << "|                  3) Back to Main Menu                            |" << endl;
+    cout << "|__________________________________________________________________|" << endl;
+   cout << "\n"<< endl;
+    cout << "\t\t\t\t\t           Enter your choice > ";
+    cin >> choice;
 
-    do {
-        cout << "\n\t\t\t\t\t1. Confirm cancel reservation" << endl;
-        cout << "\t\t\t\t\t2. Check seat status" << endl;
-        cout << "\t\t\t\t\t3. Exit" << endl;
-        cout << "\n\t\t\t\t\tEnter your choice > ";
-        cin >> choice;
-
-        switch (choice) {
-            case 1:
-                cancelBooking();
-                break;
-            case 2:
-                checkSeatStatus();
-                break;
-            case 3:
-                break;
-            default:
-                cout << "\n\t\t\t\t\tInvalid choice! Please choose again." << endl;
-        }
-    } while (choice != 3);
-}
-
-// Function to cancel the booking
-void CancelReservation::cancelBooking() {
-    string customerID;
-    bool found = false;
-
-    cout << "\n\t\t\t\t\tEnter your customer ID to cancel reservation: ";
-    cin >> customerID;
-
-    // Search for the booking with the provided customer ID
-    for (auto it = bookings.begin(); it != bookings.end(); ++it) {
-        if (it->customerID == customerID) {
-            found = true;
-            cout << "\n\t\t\t\t\tBooking found. Cancelling reservation..." << endl;
-            bookings.erase(it);  // Remove the booking
-            cout << "\t\t\t\t\tReservation canceled successfully!" << endl;
+    switch(choice) {
+        case 1:
+            cout << "Enter Booking ID to confirm cancellation: ";
+            int bookingID;
+            cin >> bookingID;
+            confirmCancellation(bookingID);
             break;
-        }
-    }
-
-    if (!found) {
-        cout << "\n\t\t\t\t\tNo reservation found with the provided Customer ID." << endl;
+        case 2:
+            cout << "Enter Booking ID to check seat status: ";
+            cin >> bookingID;
+            checkSeatStatus(bookingID);
+            break;
+        default:
+            cout << "Invalid option! Returning to main menu..." << endl;
+            break;
     }
 }
 
-// Function to check the seat status
-void CancelReservation::checkSeatStatus() {
-    if (bookings.empty()) {
-        cout << "\n\t\t\t\t\tNo bookings found!" << endl;
-        return;
+void Cancel::checkSeatStatus(int bookingID) {
+    cout << "Checking seat status for Booking ID: " << bookingID << endl;
+
+    if(seatStatus.find(bookingID) != seatStatus.end()) {
+        cout << "Seat Status: " << seatStatus[bookingID] << endl;
+    } else {
+        cout << "Invalid Booking ID!" << endl;
     }
 
-    cout << "\n\t\t\t\t\tCurrently reserved seats:" << endl;
-    for (const auto& booking : bookings) {
-        cout << "\t\t\t\t\tCustomer ID: " << booking.customerID 
-             << ", Seat Number: " << booking.seatNumber 
-             << ", Class: " << booking.classType << endl;
+    char confirmCancel;
+    cout << "Would you like to cancel this seat reservation (Y/N)? ";
+    cin >> confirmCancel;
+    if(confirmCancel == 'Y' || confirmCancel == 'y') {
+        confirmCancellation(bookingID);
+    }
+}
+
+void Cancel::confirmCancellation(int bookingID) {
+    if(seatStatus.find(bookingID) != seatStatus.end()) {
+        if(seatStatus[bookingID] == "Booked") {
+            seatStatus[bookingID] = "Available";
+            cout << "The reservation for Booking ID " << bookingID << " has been successfully cancelled." << endl;
+        } else {
+            cout << "No reservation found for this Booking ID!" << endl;
+        }
+    } else {
+        cout << "Invalid Booking ID!" << endl;
     }
 }

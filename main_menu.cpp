@@ -1,9 +1,10 @@
 #include "main_menu.hpp"
 #include <iostream>
+#include "cancel.hpp"
 
 using namespace std;
 
-void mainMenu(LoginRegisterForgot &loginregisterforgot) 
+void mainMenu(LoginRegisterForgot &loginregisterforgot, Cancel &cancel) 
 {
     int choice;
 
@@ -43,7 +44,7 @@ void mainMenu(LoginRegisterForgot &loginregisterforgot)
         case 5:
 
         case 6:
-            cancel.cancelBooking();
+            cancel.cancelReservation();
             break;
         
         case 7:
