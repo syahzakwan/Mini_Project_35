@@ -56,4 +56,7 @@ public:
             col--;
 
             if (reserveSeat(row, col)) {
-                reservedSeats++;
+                reservedSeats++;}
+        }
+    }
+};
