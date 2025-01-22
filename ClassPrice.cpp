@@ -2,6 +2,8 @@
 #include <string>
 using namespace std;
 
+int Dprices();
+
 class FlightTicket {
 private:
     double economyPrice;
@@ -40,7 +42,7 @@ public:
     }
 };
 
-int main() {
+int Dprices() {
     double economyPrice = 199.99;
     double businessPrice = 499.99;
     double firstClassPrice = 999.99;
