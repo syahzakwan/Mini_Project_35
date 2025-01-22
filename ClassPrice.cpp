@@ -52,7 +52,7 @@ int Dprices() {
     int seatClass;
     bool validSelection = false;
 
-    cout << "Welcome to the Flight Ticket Booking System!" << endl;
+    cout << "This section is for Seat Class!" << endl;
 
     while (!validSelection) {
         ticket.displaySeatClasses();
