@@ -3,10 +3,10 @@
   |                                      |                   |
   |              NAME                    |      Matric No    |
   |______________________________________|___________________|
-  |                                      |                   |
+  |  AHMAD SYAHIRAN ZAKWAN BIN KARMAH    |      23303512     |
   |            TANG JIN SHEN             |      23301943     |
   |        GARETT KHOO BOO ZHENG         |      23301528     |
-  |   AHMAD SYAHIRAN ZAKWAN BIN KARMAH   |      23303512     |
+  |    MUHAMAD ALIFF NAJMI BIN ADENAN    |      23303539     |
   |  NURUL FATIHA ARMANI BINTI MUHAMMAD  |      23302501     | 
   |               NIZAM                  |                   |
   | NUR FARZANA IZZATI BINTI BARZAN SHAH |      23303059     |
@@ -30,13 +30,15 @@ int main()
 {
     welcomePage();
     LoginRegisterForgot loginregisterforgot;
-    mainMenu(loginregisterforgot);
+    Cancel cancel;
+    mainMenu(loginregisterforgot, cancel);
 
 
     bool economySeats[ECONOMY_SEATS] = {false}; 
     bool firstClassSeats[FIRST_CLASS_SEATS] = {false};
     bool businessClassSeats[BUSINESS_CLASS_SEATS] = {false};
 
+    
     int choice;
 
     do {
@@ -90,5 +92,6 @@ int main()
 
     string chosenDestination = selectDestination(destinations);
     cout << "You have chosen: " << chosenDestination << endl;
+
     return 0;
 }
